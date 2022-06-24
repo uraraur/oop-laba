@@ -3,32 +3,38 @@
 
 using namespace std;
 
-class Animal {
+class Animal { //abstract animal class
 public:
-	virtual string MakeNoise() = 0;
+	virtual string MakeNoise() = 0; //abstract makenoise function
 };
+
+
+
+//----------------------------Animals implementations------------------------------------
 class Dog :public Animal {
 public:
-	string MakeNoise()override {
+	string MakeNoise() override {
 		return "Bark!";
 	}
 };
 class Capybara :public Animal {
 public:
-	string MakeNoise()override {
+	string MakeNoise() override {
 		return "Okay, I pull up!";
 	}
 };
-class Cat :public Animal {
+
+//Cats ^__^
+class Cat :public Animal { //cat abstract class
 public:
 	string MakePurr(){
 		return "Purr!";
 	}
-	virtual string Colour() = 0;
+	virtual string Colour() = 0; //abstract colour function
 };
 class Lion :public Cat {
 public:
-	string MakeNoise()override {
+	string MakeNoise() override {
 		return "Rowwr!";
 	}
 	string Colour() override {
@@ -37,7 +43,7 @@ public:
 };
 class Tigr :public Cat {
 public:
-	string MakeNoise()override {
+	string MakeNoise() override {
 		return "Rrrrr!";
 	}
 	string Colour() override {
@@ -45,13 +51,15 @@ public:
 	}
 };
 
-enum class Animals {
+//enum for testing convenience 
+enum class Animals {  
 	Tigr, Lion, Dog, Capybara
 };
 enum class Cats {
 	Tigr, Lion
 };
 
+//(check if animals do noise that they should do)
 bool TestAnimalNoise(Animal* p, Animals m) {
 	switch (m) {
 		case Animals::Tigr: return (p->MakeNoise() == "Rrrrr!");
@@ -60,6 +68,7 @@ bool TestAnimalNoise(Animal* p, Animals m) {
 		case Animals::Capybara: return (p->MakeNoise() == "Okay, I pull up!");
 	}
 }
+//(check if cats have colour that they should have)
 bool TestCatColour(Cat* p, Cats m) {
 	switch (m) {
 	case Cats::Tigr: return (p->Colour() == "Orange-black");
